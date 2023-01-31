@@ -101,4 +101,4 @@ hardnested/hardnested_bitarray_core_AVX512.o : hardnested/hardnested_bitarray_co
 clean:
 	rm -f $(obj) cropto1_bs $(MULTIARCHOBJS) $(CMDOBJS)
 install:
-    install -m 755 ./cropto1_bs @prefix@/bin
+	install -m 755 ./cropto1_bs @prefix@/bin
