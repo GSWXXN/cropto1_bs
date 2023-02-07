@@ -1355,11 +1355,9 @@ const nfc_modulation nmMifare = {
 #define MC_AUTH_B 0x61
 #define MAX_FRAME_LEN 264
 
-enum {
-    OK,
-    ERROR,
-    KEY_WRONG,
-};
+#define OK 0
+#define ERROR 1
+#define KEY_WRONG 2
 
 uint8_t oddparity(const uint8_t bt) {
     // cf http://graphics.stanford.edu/~seander/bithacks.html#ParityParallel
