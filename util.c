@@ -26,6 +26,7 @@
 #ifndef _WIN32
 #include <termios.h>
 #include <sys/ioctl.h> 
+#include <sys/socket.h>
 #include <unistd.h>
 
 int ukbhit(void) {
