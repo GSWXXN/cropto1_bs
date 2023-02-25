@@ -1020,7 +1020,7 @@ static void estimate_sum_a8(void) {
     }
 }
 
-static int read_nonce_file(void) {
+static int read_nonce_file(const char* filePath) {
     FILE *fnonces = NULL;
     size_t bytes_read;
     uint8_t trgBlockNo;
@@ -1030,12 +1030,12 @@ static int read_nonce_file(void) {
     uint8_t par_enc;
 
     num_acquired_nonces = 0;
-    if ((fnonces = fopen("nonces.bin", "rb")) == NULL) {
-        PrintAndLog("Could not open file nonces.bin");
+    if ((fnonces = fopen(filePath, "rb")) == NULL) {
+        PrintAndLog("Could not open file");
         return 1;
     }
 
-    hardnested_print_progress(0, "Reading nonces from file nonces.bin...", (float) (1LL << 47), 0);
+    hardnested_print_progress(0, "Reading nonces from file..", (float) (1LL << 47), 0);
     bytes_read = fread(read_buf, 1, 6, fnonces);
     if (bytes_read != 6) {
         PrintAndLog("File reading error.");
@@ -2628,7 +2628,7 @@ static void set_test_state(uint8_t byte) {
     crypto1_destroy(pcs);
 }
 
-int mfnestedhard() {
+int mfnestedhard(const char* filePath) {
     char progress_text[80];
 
     char instr_set[12] = {0};
@@ -2652,7 +2652,7 @@ int mfnestedhard() {
     update_reduction_rate(0.0, true);
 
     if (true) { // use pre-acquired data from file nonces.bin
-        if (read_nonce_file() != 0) {
+        if (read_nonce_file(filePath) != 0) {
             free_bitflip_bitarrays();
             free_nonces_memory();
             free_bitarray(all_bitflips_bitarray[ODD_STATE]);

@@ -46,7 +46,7 @@ typedef struct noncelist {
     noncelistentry_t *first;
 } noncelist_t;
 
-int mfnestedhard();
+int mfnestedhard(const char* filePath);
 void hardnested_print_progress(uint32_t nonces, char *activity, float brute_force, uint64_t min_diff_print_time);
 
 #endif

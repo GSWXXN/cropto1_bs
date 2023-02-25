@@ -13,10 +13,19 @@
 
 #include "cmdhfmfhard.h"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, char* argv[]) {
 
-    mfnestedhard();
+    if (argc == 2) {
+        const char* filePath = argv[1];
+        mfnestedhard(filePath);
+    } else {
+        mfnestedhard("./nonces.bin");
+    }
 
     return 0;
 }
+
+
+
+
 
